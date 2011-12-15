@@ -5,6 +5,10 @@ To run type the below at command line. This will startup restful server listenin
 
 $ mvn clean package exec:java
 
+# Todo
+- create multi maven modules 
+- add Java Service Wrapper
+ 
 # License
 Copyright 2011 Khiem Truong & Sebastian Wittenkamp. All rights reserved.
 
