@@ -29,9 +29,9 @@ public class EmployeeDTOTest {
     @Test
     public void shouldProperlyCreateEntity() {
         Employee entity = dto.getEntity();
-        assertEquals(dto.getDept(), entity.getDept());
-        assertEquals(dto.getName(), entity.getName());
-        assertNotNull(entity.getCreated());
+        assertEquals(dto.getDept(), entity.dept());
+        assertEquals(dto.getName(), entity.name());
+        assertNotNull(entity.created());
     }
 
 
@@ -39,6 +39,6 @@ public class EmployeeDTOTest {
     public void shouldHaveModifiedSameAsCreated() {
         Employee entity = dto.getEntity();
 
-        assertEquals(entity.getCreated(), entity.getModified());
+        assertEquals(entity.created(), entity.created());
     }
 }

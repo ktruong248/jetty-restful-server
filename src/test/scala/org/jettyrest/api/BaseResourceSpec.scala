@@ -1,5 +1,6 @@
 package org.jettyrest.api
 
+import employee.entities.Employee
 import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
 import org.scalatest.matchers.ShouldMatchers
@@ -9,7 +10,6 @@ import org.scalatest.{BeforeAndAfter, Spec}
 class BaseResourceSpec extends Spec with ShouldMatchers with BeforeAndAfter {
 
   describe("BaseResource") {
-
 
     before {
       println("before ")

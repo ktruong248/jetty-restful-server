@@ -28,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService<Employee> {
 
     @Override
     public String save(Employee entity) {
-        return repository.save(entity).getId();
+        return repository.save(entity).id();
     }
 
     @Override
