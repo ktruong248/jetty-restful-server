@@ -5,6 +5,11 @@ To run type the below at command line. This will startup restful server listenin
 
 $ mvn clean package exec:java
 
+# Todo
+- add ruby/cucumber as integration tests
+- create multi maven modules 
+- add Java Service Wrapper, and package as debian/rpm
+ 
 # License
 Copyright 2011 Khiem Truong & Sebastian Wittenkamp. All rights reserved.
 
