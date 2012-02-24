@@ -4,7 +4,6 @@ import org.springframework.context.ApplicationContext
 import com.google.common.base.Service
 import org.springframework.context.support.ClassPathXmlApplicationContext
 
-
 object ApiServer {
   def main(args: Array[String]) {
     val context: ApplicationContext = new ClassPathXmlApplicationContext("spring-server.xml");
