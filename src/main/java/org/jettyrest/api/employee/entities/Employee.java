@@ -21,7 +21,9 @@ public class Employee {
     private Date modified;
 
     public Employee() {
-        setCreated(new Date());
+        Date now = new Date();
+        setCreated(now);
+        setModified(now);
     }
 
     public Employee(String name, String dept) {

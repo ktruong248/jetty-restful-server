@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
-public abstract class BaseResource {
+public abstract class AbstractBaseResource {
 
     private ApiValidator validator;
 
