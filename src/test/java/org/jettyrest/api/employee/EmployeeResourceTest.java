@@ -1,8 +1,7 @@
 package org.jettyrest.api.employee;
 
+import org.jettyrest.api.EmployeeService;
 import org.jettyrest.api.employee.entities.Employee;
-import org.jettyrest.api.exception.ApiException;
-import org.jettyrest.api.exception.ErrorCode;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -25,7 +23,7 @@ public class EmployeeResourceTest {
     private Employee employee;
 
     @Mock
-    private EmployeeService<Employee> service;
+    private EmployeeService<Employee, String> service;
 
     @Before
     public void setup() {
@@ -45,10 +43,10 @@ public class EmployeeResourceTest {
 
 
     @Test
-    public void shouldSaveAndReturnCreatedIdAsBody() {
+    public void shouldSaveAndReturnCreateResponseAsBody() {
         given(service.save(employee)).willReturn("a uuid");
         Response response = employeeResource.save(employee);
-        CreatedId createdId = (CreatedId) response.getEntity();
+        CreatedResponse createdId = (CreatedResponse) response.getEntity();
         assertNotNull(createdId);
         assertEquals("a uuid", createdId.getId());
     }
@@ -63,8 +61,8 @@ public class EmployeeResourceTest {
 
     @Test
     public void shouldHaveFindByUUID() {
-        given(service.findByUUID("my uuid")).willReturn(employee);
-        Employee foundEmployee = employeeResource.findByUUID("my uuid");
+        given(service.findById("my uuid")).willReturn(employee);
+        Employee foundEmployee = employeeResource.findById("my uuid");
         assertNotNull(foundEmployee);
         assertThat(foundEmployee, is(equalTo(employee)));
     }
@@ -72,36 +70,14 @@ public class EmployeeResourceTest {
 
     @Test
     public void shouldCallFindByUUID() {
-        employeeResource.findByUUID("my c uuid");
-        verify(service).findByUUID("my c uuid");
+        employeeResource.findById("my c uuid");
+        verify(service).findById("my c uuid");
     }
 
 
     @Test
     public void shouldCallDelete() {
-        employeeResource.deleteByUUID("my uuid to delete");
-        verify(service).deleteByUUID("my uuid to delete");
-    }
-
-
-    @Test
-    public void shouldCallUpdate() {
-        String uuid = "uuid";
-        String attributeName = "name";
-        String attributeValue = "Mango";
-        employeeResource.update(uuid, attributeName, attributeValue);
-        verify(service).update(uuid, attributeName, attributeValue);
-    }
-
-
-    @Test(expected = ApiException.class)
-    public void shouldThrowExceptionForNotSupportAttributeName() {
-        String uuid = "uuid";
-        String attributeName = "yargablabla";
-        String attributeValue = "Mango";
-
-        doThrow(new ApiException("not supported attribute", ErrorCode.INVALID_REQUEST_DATA)).when(service).update(uuid, attributeName, attributeValue);
-        employeeResource.update(uuid, attributeName, attributeValue);
-
+        employeeResource.deleteById("my uuid to delete");
+        verify(service).delete("my uuid to delete");
     }
 }

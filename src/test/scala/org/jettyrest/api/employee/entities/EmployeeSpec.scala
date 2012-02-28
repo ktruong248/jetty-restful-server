@@ -16,19 +16,20 @@ class EmployeeSpec extends Spec with ShouldMatchers with BeforeAndAfter {
   describe("Employee spec") {
 
     it("should create new employee with created date the same as modified date") {
+      employee.created should not be (null)
       employee.created should be(employee.modified)
     }
 
     it("should correct set name and dept") {
-      employee.name should be ("name")
-      employee.dept should be ("dept")
+      employee.name should be("name")
+      employee.dept should be("dept")
     }
 
     it("should be default not create populate created or modified") {
       employee = new Employee()
 
-      employee.created should be (null)
-      employee.modified should be (null)
+      employee.created should be(null)
+      employee.modified should be(null)
     }
   }
 }
