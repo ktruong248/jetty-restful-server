@@ -13,4 +13,10 @@
     <context:component-scan base-package="org.jettyrest.api"/>
 
     <import resource="spring-persitence.xml"/>
+
+    <bean id="apiListingResourceJSON" class="com.wordnik.swagger.jaxrs.ApiListingResourceJSON" />
+
+    <bean id="apiListingResourceXML" class="com.wordnik.swagger.jaxrs.ApiListingResourceXML" />
+
+    <!--<bean id="jaxrsApiReader" class="com.wordnik.swagger.jaxrs.JaxrsApiReader"/>-->
 </beans>
